@@ -1,0 +1,26 @@
+CREATE TABLE `products` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `title` varchar(45) NOT NULL,
+    `price` int NOT NULL,
+    `rating` decimal(3,2) DEFAULT NULL,
+    `category` varchar(45) NOT NULL,
+    `brand` varchar(45) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+)
+    ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `customer` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(128) DEFAULT NULL,
+    `productID` mediumint unsigned DEFAULT NULL,
+    PRIMARY KEY (`id`)
+)
+    ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+SELECT category, COUNT(title) FROM products GROUP BY category;
+
+SELECT category, COUNT(DISTINCT brand) FROM products GROUP BY category;
+
+SELECT name, COUNT(name) AS Quantity FROM customer GROUP BY name ORDER BY Quantity DESC;
+
+SELECT category, title, price FROM customer JOIN products ON customer.productID=products.id ORDER BY category, price DESC;
