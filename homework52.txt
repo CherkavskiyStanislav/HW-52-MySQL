@@ -1,14 +1,34 @@
-CREATE TABLE `products` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `PRODUCT` varchar(45) NOT NULL,
-    `Price` int NOT NULL,
-    `rating` decimal(3,2) NOT NULL,
-    `category` varchar(45) NOT NULL,
-    `brand` varchar(45) NOT NULL,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `id_UNIQUE` (`id`)
-)
-    ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE SCHEMA `shop` ;
+
+CREATE TABLE `shop`.`products` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `PRODUCT` VARCHAR(45) NOT NULL,
+  `Price` INT NOT NULL,
+  `rating` DECIMAL(3,2) NOT NULL,
+  `category` VARCHAR(45) NOT NULL,
+  `brand` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
+INSERT INTO `shop`.`products` (id, PRODUCT, price, rating, category, brand)
+VALUES ('1', 'iPhone 9', '549', '4.69','smartphones', 'Apple');
+
+INSERT INTO `shop`.`products`
+(`PRODUCT`,
+`Price`,
+`rating`,
+`category`,
+`brand`)
+VALUES
+("iPhone X", 899, 4.44, "smartphones", "Apple"),
+("Samsung Universe 9", 1249, 4.09, "smartphones", "Samsung"),
+("OPPO F19", 280, 4.3, "smartphones", "OPPO"),
+("Huawei P30", 499, 4.09, "smartphones", "Huawei"),
+("MacBook Pro", 1149, 4.57, "laptops", "Apple"),
+("Samsung Galaxy Book", 1449, 4.25, "laptops", "Samsung"),
+("Microsoft Surface Laptop 4", 1449, 4.43, "laptops", "Microsoft Surface"),
+("Infinix INBOOK", 1099, 4.54, "laptops", "Infinix"),
+("HP Pavilion 15-DK1056WM", 1099, 4.43, "laptops", "HP Pavilion");
+
 
 SELECT PRODUCT, Price FROM products WHERE brand = 'Apple';
 
