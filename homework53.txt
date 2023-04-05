@@ -1,26 +1,38 @@
-CREATE TABLE `products` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `title` varchar(45) NOT NULL,
-    `price` int NOT NULL,
-    `rating` decimal(3,2) DEFAULT NULL,
-    `category` varchar(45) NOT NULL,
-    `brand` varchar(45) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-)
-    ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+INSERT INTO `shop`.`products`
+(`PRODUCT`,
+`Price`,
+`rating`,
+`category`,
+`brand`)
+VALUES
+("iPhone 12", 1100, 4.69 ,"smartphones", "Apple"),
+("iPhone 11", 979, 4.69 ,"smartphones", "Apple"),
+("MacBook Air", 1300, 4.72,"laptops", "Apple"),
+("iPhone 14", 1549, 4.69, "smartphones", "Apple"),
+("iPhone 13", 1349, 4.69,"smartphones", "Apple"),
+("MacBook", 950, 4.69,"laptops", "Apple");
 
-CREATE TABLE `customer` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `name` varchar(128) DEFAULT NULL,
-    `productID` mediumint unsigned DEFAULT NULL,
-    PRIMARY KEY (`id`)
-)
-    ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+CREATE TABLE `shop`.`customer` (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(128),
+    productID MEDIUMINT UNSIGNED
+);
 
-SELECT category, COUNT(title) FROM products GROUP BY category;
+INSERT INTO `shop`.`customer`
+(`name`,`productID`)
+VALUES
+("Mike", 9),
+("Bob", 5),
+("Nikola", 11),
+("Mike", 14),
+("Nikola", 3),
+("Mike", 8),
+("Mike", 9);
+
+SELECT category, COUNT(PRODUCT) FROM products GROUP BY category;
 
 SELECT category, COUNT(DISTINCT brand) FROM products GROUP BY category;
 
 SELECT name, COUNT(name) AS Quantity FROM customer GROUP BY name ORDER BY Quantity DESC;
 
-SELECT category, title, price FROM customer JOIN products ON customer.productID=products.id ORDER BY category, price DESC;
+SELECT category, PRODUCT, price FROM customer JOIN products ON customer.productID=products.id ORDER BY category, price DESC;
